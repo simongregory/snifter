@@ -1,3 +1,8 @@
+require 'simplecov'
+SimpleCov.start do
+  add_filter 'test'
+end
+
 require "rubygems"
 require "bundler"
 Bundler.require :development, :default
@@ -13,3 +18,5 @@ require 'twit_sniff'
 def credentials
   @credentials ||= YAML::load(File.read(File.expand_path(File.join(File.dirname(__FILE__), '..', '..','credentials.yml'))))
 end
+
+TwitSniff.setup(credentials['consumer_key'], credentials['consumer_secret'])
