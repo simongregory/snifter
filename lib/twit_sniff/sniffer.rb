@@ -1,27 +1,28 @@
 module TwitSniff
 
-  class IPlayer
-    def initialize(ck, cs, ot, ots)
-      Twitter.configure do |config|
-        config.consumer_key = ck
-        config.consumer_secret = cs
-        config.oauth_token = ot
-        config.oauth_token_secret = ots
-      end
-    end
+  class Sniffer
+    attr_reader :topic, :topic_fails
 
-    def location
-      Twitter.user("bbciplayer").location
+    def initialize(ot, ots, topic)
+      @client = Twitter::Client.new(:oauth_token => ot,
+                                    :oauth_token_secret => ots)
+
+      @topic = topic
+      @topic_fails = '### fail OR problem OR issue OR error -"no problem"'.sub('###', topic)
     end
 
     def mentions
-      Twitter.search("iplayer", :count => 20).results
+      @client.search(@topic, :count => 100).results
     end
 
     def fails
-      Twitter.search("iplayer fail", :count => 100).results
+      @client.search(@topic_fails, :count => 100).results
+    end
+
+    def fails_in_last_hour
+      hour_ago = Time.new - 360
+      fails.reject { |tweet| tweet.created_at < hour_ago }
     end
   end
 
 end
-

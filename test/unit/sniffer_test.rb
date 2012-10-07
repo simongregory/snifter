@@ -1,36 +1,42 @@
 require 'test_helper'
 
-class TwitSniffTest < Test::Unit::TestCase
+class SnifferTest < Test::Unit::TestCase
 
-  context "A TwitSniff" do
+  context "A sniffer" do
 
     setup do
-      @sniff = TwitSniff::IPlayer.new(
-                  credentials['consumer_key'],
-                  credentials['consumer_secret'],
+      @sniffer = TwitSniff::Sniffer.new(
                   credentials['access_token'],
-                  credentials['access_token_secret'])
+                  credentials['access_token_secret'],
+                  'iplayer')
+
+      @cli = TwitSniff::CLI.new
     end
 
     teardown do
-      @sniff = nil
+      @sniffer = nil
     end
 
-    should "look up iplayers location" do
-      assert_equal('', @sniff.location)
+    should "have a topic to search for" do
+      assert_equal('iplayer', @sniffer.topic)
     end
 
-    should "find tweets mentioning iplayer" do
-      tweets = @sniff.mentions
-      assert_not_nil(tweets)
+    should "have a failure topic to search for" do
+      assert_equal('iplayer fail OR problem OR issue OR error -"no problem"', @sniffer.topic_fails)
     end
 
-    should "never find tweets metioning iplayer fail" do
-      tweets = @sniff.fails
+    should "Discover tweets mentioning the search term" do
+      @cli.echo @sniffer.mentions
+    end
 
-      tweets.each { |t| puts "#{t.from_user}: #{t.text}" }
+    should "Discover how many tweets in the last hour have mentioned issues" do
+      tweets = @sniffer.fails_in_last_hour
 
-      assert_nil(tweets)
+      if tweets.empty?
+        puts 'No recent failures'
+      else
+        @cli.echo tweets
+      end
     end
   end
 end
