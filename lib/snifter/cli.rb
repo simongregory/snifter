@@ -1,8 +1,9 @@
-module TwitSniff
+module Snifter
   class CLI
     def echo tweets
       problem_rgx = /(unwatchable|slow|poor|(problem|error|issue)(s)?|fail(ed|ing|s)?|buffer(ing|ed)?|fuck(e(d|r)|ing|s)?)/i
 
+      tweets.reverse!
       tweets.each { |t|
         text = t.text.gsub(/\n/, ' ')
         highlight text, problem_rgx

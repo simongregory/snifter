@@ -5,7 +5,7 @@ class SnifferTest < Test::Unit::TestCase
   context "A sniffer" do
 
     setup do
-      @cli = TwitSniff::CLI.new
+      @cli = Snifter::CLI.new
       @real_out = $stdout
       $stdout = StringIO.new
     end
@@ -15,7 +15,7 @@ class SnifferTest < Test::Unit::TestCase
       $stdout = @real_out
     end
 
-    should "outputs a list of tweets" do
+    should "output a list of tweets" do
       tweet = mock()
       tweet.expects(:from_user).returns('AdaLovelace').once
       tweet.expects(:created_at).returns(Time.new).once

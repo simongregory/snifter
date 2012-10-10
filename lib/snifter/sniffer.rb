@@ -1,4 +1,4 @@
-module TwitSniff
+module Snifter
   class Sniffer
     attr_reader :topic, :topic_fails
 

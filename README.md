@@ -1,6 +1,6 @@
-# Twit Sniff
+# Snifter
 
-Can we use twitter to autmatically monitor user feedback in a useful way?
+Can we use twitter to automatically monitor user feedback in a useful way?
 
 ## Setup
 
@@ -10,9 +10,9 @@ https://dev.twitter.com/apps
 
 and click on 'Create a new application', name it etc. Once complete copy the tokens into the credentials.yml file.
 
-If you build and install the gem then it expects a valid credentials file in your $HOME directory named .twit. You can copy the credentials.yml there. It's probably best to then chmod the file so only you have read access
+If you build and install the gem then it expects a valid credentials file in your $HOME directory named .snifter. You can copy the credentials.yml there. It's probably best to then chmod the file so only you have read access
 
-    chmod 600 ~/.twit
+    chmod 600 ~/.snifter
 
 ## License
 

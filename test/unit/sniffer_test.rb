@@ -6,7 +6,7 @@ class SnifferTest < Test::Unit::TestCase
 
     setup do
       @client = mock()
-      @sniffer = TwitSniff::Sniffer.new(@client, 'lovelace')
+      @sniffer = Snifter::Sniffer.new(@client, 'lovelace')
     end
 
     teardown do

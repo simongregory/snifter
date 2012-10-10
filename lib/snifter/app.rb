@@ -1,4 +1,4 @@
-module TwitSniff
+module Snifter
   def self.store_consumer(credentials, service=Twitter)
     service.configure do |config|
       config.consumer_key = credentials['consumer_key']

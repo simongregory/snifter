@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby -wKU
+
+require 'rubygems'
+require 'snifter'
+
+def credentials
+  @credentials ||= YAML::load(File.read("#{ENV['HOME']}/.snifter")) rescue abort('Snifter is missing your Twitter credentials - have a look at the project README then put them in ~/.snifter')
+end
+
+product = 'iplayer'
+product = ARGV[0] if ARGV[0] != nil
+
+Snifter.store_consumer(credentials)
+
+client = Snifter.make_client(credentials)
+sniffer = Snifter::Sniffer.new(client, product)
+cli = Snifter::CLI.new
+
+cli.echo sniffer.fails
