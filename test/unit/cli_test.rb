@@ -20,14 +20,14 @@ class SnifferTest < Test::Unit::TestCase
       tweet.expects(:from_user).returns('AdaLovelace').once
       tweet.expects(:created_at).returns(Time.new).once
       tweet.expects(:retweet_count).returns(0).once
-      tweet.expects(:text).returns('Just whipped up Twitter on the old analytical engine').once
+      tweet.expects(:text).returns('Whipped up Twitter on the old analytical engine').once
 
       @cli.echo [tweet]
 
       assert_match(/AdaLovelace/, $stdout.string)
       assert_match(/Just now/, $stdout.string)
       assert_match(/0/, $stdout.string)
-      assert_match(/Just whipped/, $stdout.string)
+      assert_match(/Whipped up/, $stdout.string)
     end
   end
 end
