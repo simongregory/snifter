@@ -1,14 +1,12 @@
 module TwitSniff
-
   class Sniffer
     attr_reader :topic, :topic_fails
 
-    def initialize(ot, ots, topic)
-      @client = Twitter::Client.new(:oauth_token => ot,
-                                    :oauth_token_secret => ots)
+    def initialize(client, topic)
+      @client = client
 
       @topic = topic
-      @topic_fails = '### fail OR problem OR issue OR error -"no problem"'.sub('###', topic)
+      @topic_fails = '### fail OR problem OR issue OR error OR slow OR buffer -"no problem"'.sub('###', topic)
     end
 
     def mentions
@@ -24,5 +22,4 @@ module TwitSniff
       fails.reject { |tweet| tweet.created_at < hour_ago }
     end
   end
-
 end

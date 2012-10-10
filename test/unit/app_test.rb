@@ -1,11 +1,25 @@
 require 'test_helper'
 
 class AppTest < Test::Unit::TestCase
-
   context "A TwitSniff setup" do
 
-    should "configure Twitter with a consumer key and secret" do
-      #
+    should "configure the Application with a consumer key and secret" do
+      credentials = {'consumer_key' => 'skeleton', 'consumer_secret' => 'closet'}
+
+      config = mock()
+      config.expects(:consumer_key=).with('skeleton').once
+      config.expects(:consumer_secret=).with('closet').once
+
+      service = mock()
+      service.stubs(:configure).yields(config)
+
+      TwitSniff.store_consumer(credentials, service)
+    end
+
+    should "create clients with user account credentials" do
+      credentials = {'access_token' => '', 'access_token_secret' => '', }
+
+      assert_not_nil(TwitSniff.make_client(credentials))
     end
   end
 end
