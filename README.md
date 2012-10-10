@@ -7,6 +7,12 @@ Maybe twitter could be used to monitor user feedback in a useful way...
 
 ## Install
 
+Only known to work on Ruby 1.9.3
+
+    gem install snifter --pre
+
+OR
+
     git clone [this repo]
     cd snifter
     bundle install
