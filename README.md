@@ -1,6 +1,7 @@
 # Snifter
 
 [![Build Status](https://secure.travis-ci.org/simongregory/snifter.png)](http://travis-ci.org/simongregory/snifter)
+[![Dependency Status](https://gemnasium.com/simongregory/snifter.png)](https://gemnasium.com/simongregory/snifter)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/simongregory/snifter)
 
 Maybe twitter could be used to monitor user feedback in a useful way...
