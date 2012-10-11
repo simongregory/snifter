@@ -39,6 +39,10 @@ Try it with
     snifter
     snifter 4od
 
+And you should see something like:
+
+![Terminal Screen Shot](https://github.com/simongregory/snifter/raw/master/screenshots/snifter.png)
+
 ## License
 
 Released under the MIT License. Please see the accompanying [LICENSE](LICENSE) document for
