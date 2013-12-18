@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby -wKU
 
 require 'rubygems'
+require 'yaml'
 require 'snifter'
 
 def credentials
